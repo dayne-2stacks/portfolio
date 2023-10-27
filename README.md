@@ -1,4 +1,48 @@
+# My Personal Portfolio
+
+Welcome to my personal portfolio website! This project is built with React and showcases my skills, projects, and more.
+
+## Table of Contents
+- [Demo](#demo)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Deployment](#deployment)
+- [License](#license)
+
+## Demo
+
+You can check out my portfolio website live at [https://your-portfolio-url.com](https://your-portfolio-url.com).
+
+## Features
+
+- **About Me:** A section introducing myself, my skills, and my background.
+- **Portfolio:** Displays a selection of my projects with descriptions and links.
+- **Resume:** Provides a link to my resume/CV for download.
+- **Contact:** A way for visitors to get in touch with me through a contact form.
+- **Responsive Design:** The website is designed to work well on various screen sizes.
+
+## Technologies Used
+
+- **React:** Built with the React JavaScript library.
+- **HTML and CSS:** Custom styling and layout.
+- **Other libraries:** You may list other libraries or dependencies you've used.
+
+## Getting Started
+
+1. Clone this repository: `git clone https://github.com/your-username/your-portfolio.git`
+2. Install dependencies: `npm install`
+3. Start the development server: `npm start`
+4. Customize the content and styling to make it your own.
+
+## Project Structure
+
+
+
+
 # Getting Started with Create React App
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
