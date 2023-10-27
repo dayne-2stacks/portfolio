@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "description": "Projects Completed",
+      "amount": 50
+    },
+    {
+      "description": "Years of Experience",
+      "amount": 10
+    },
+    {
+      "description": "Technical Skills",
+      "amount": 10
+    },
+    {
+      "description": "Satisfied Clients",
+      "amount": 100
+    }
+  ]
+}
