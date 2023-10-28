@@ -20,6 +20,8 @@ jobs:
           git config --global user.name "Dayne Guy"
           git config --global user.email "dayneguy@usf.edu"
           chmod -R 777 .
+      - name: Disable CI
+      - run: echo "CI=false" >> $GITHUB_ENV
       - uses: actions/checkout@v3
         with:
           submodules: true
