@@ -6,6 +6,7 @@ import { Divider } from "../Base/Divider";
 import { handleChange } from "../../utils/Utils";
 import { S2 } from "../Base/Subheadings";
 import { Container } from "../Base/Container";
+
 import {
   IoLogoFacebook,
   IoLogoGithub,
@@ -80,7 +81,7 @@ const Contact = () => {
     <div>
       <Card>
         <H1> // Let's Connect</H1>
-        <form>
+        <form name="contact">
           <Input
             placeholder="YOUR NAME *"
             onChange={(e) => handleChange(e, setName)}
@@ -99,7 +100,16 @@ const Contact = () => {
             onChange={(e) => handleChange(e, setMessage)}
           />
           <Divider secondary />
-          <Button type="submit"> SEND MESSAGE</Button>
+          <Button
+            form="contact"
+            type="submit"
+            onClick={() => {
+              alert("Not yet functional");
+            }}
+          >
+            {" "}
+            SEND MESSAGE
+          </Button>
           <Divider secondary />
         </form>
         <H3>Dayne Guy</H3>
