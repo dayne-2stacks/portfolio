@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container } from "../Base/Container";
 import { H1 } from "../Base/Headings";
 import { useSwipeHorizontal } from "../../utils/useSwipeHorizontal";
@@ -8,6 +8,7 @@ export const ProjectGallery = ({ children }) => {
   const [imageSrc, setImageSrc] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slides, setSlides] = useState([]);
+  const galleryRef = useRef();
 
   useEffect(() => {
     // Fetch a random image from Lorem Picsum
@@ -47,6 +48,9 @@ export const ProjectGallery = ({ children }) => {
         {slides.map((slide, index) => {
           return (
             <ProjectImg
+              name="gallery"
+              ref={galleryRef}
+              onClick={() => console.log(galleryRef.current.name)}
               key={slide.key}
               src={slide.url}
               alt={slide.alt}
