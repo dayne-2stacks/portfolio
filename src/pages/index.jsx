@@ -11,7 +11,7 @@ import Expertise from "../components/Expertise/index";
 import Contact from "../components/Contact/Contact";
 import Projects from "../components/Projects/Projects";
 import { Container } from "../components/Base/Container";
-import CircularCarousel from "../components/Projects/CircularCarousel";
+// import CircularCarousel from "../components/Projects/CircularCarousel";
 
 export const IndexPage = () => {
   return (
@@ -36,7 +36,7 @@ export const IndexPage = () => {
       <Divider />
       <Projects />
       <Contact />
-      <CircularCarousel />
+      {/* <CircularCarousel /> */}
     </Layout>
   );
 };
