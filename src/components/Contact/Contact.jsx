@@ -116,7 +116,7 @@ const Contact = () => {
     <div>
       <Card>
         <H1> // Let's Connect</H1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <Input
             placeholder="YOUR NAME *"
             value={name}
