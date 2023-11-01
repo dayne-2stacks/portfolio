@@ -104,6 +104,10 @@ const Contact = () => {
       if (response.ok) {
         // Handle a successful submission (e.g., show a success message)
         console.log("Form submitted successfully!");
+        setName("");
+        setEmail("");
+        setInterest("");
+        setMessage("");
       } else {
         // Handle submission errors (e.g., show an error message)
         console.error("Form submission failed.");
