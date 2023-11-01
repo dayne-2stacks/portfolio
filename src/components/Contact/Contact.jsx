@@ -76,17 +76,55 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [interest, setInterest] = useState("");
   const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Create an object with the form data
+    const formData = {
+      name,
+      email,
+      interest,
+      message,
+    };
+
+    // Send the form data to your server or make an API call to handle the submission
+    try {
+      const response = await fetch(
+        "https://portfolio-functions-dayne.azurewebsites.net/api/postContact?code=BPUTfCjnMQAHDATUR3rjtnRL-HwmqMBxqFsCqbDmm2FnAzFugTeoKw==",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (response.ok) {
+        // Handle a successful submission (e.g., show a success message)
+        console.log("Form submitted successfully!");
+      } else {
+        // Handle submission errors (e.g., show an error message)
+        console.error("Form submission failed.");
+      }
+    } catch (error) {
+      console.error("Error while submitting the form:", error);
+    }
+  };
   return (
     <div>
       <Card>
         <H1> // Let's Connect</H1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Input
             placeholder="YOUR NAME *"
+            value={name}
             onChange={(e) => handleChange(e, setName)}
           />
           <Input
             placeholder="YOUR EMAIL *"
+            value={email}
             onChange={(e) => handleChange(e, setEmail)}
           />
           <Select onChange={(e) => handleChange(e, setInterest)}>
@@ -95,6 +133,7 @@ const Contact = () => {
             <Option value="recruit">Recruit</Option>
           </Select>
           <Input
+            value={message}
             placeholder="WRITE A MESSAGE..."
             onChange={(e) => handleChange(e, setMessage)}
           />
