@@ -131,7 +131,10 @@ const Contact = () => {
             value={email}
             onChange={(e) => handleChange(e, setEmail)}
           />
-          <Select onChange={(e) => handleChange(e, setInterest)}>
+          <Select
+            value={interest}
+            onChange={(e) => handleChange(e, setInterest)}
+          >
             <Option value=""> WHAT ARE YOU LOOKING FOR? </Option>
             <Option value="contact">Contact</Option>
             <Option value="recruit">Recruit</Option>
