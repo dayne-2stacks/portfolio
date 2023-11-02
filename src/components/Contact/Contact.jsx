@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { H1, H3 } from "../Base/Headings";
+import { H1, H2, H3 } from "../Base/Headings";
 import styled from "styled-components";
 import Card from "../Card/Card";
 import { Divider } from "../Base/Divider";
@@ -76,6 +76,7 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [interest, setInterest] = useState("");
   const [message, setMessage] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -108,6 +109,7 @@ const Contact = () => {
         setEmail("");
         setInterest("");
         setMessage("");
+        setIsSubmitted(true);
       } else {
         // Handle submission errors (e.g., show an error message)
         console.error("Form submission failed.");
@@ -120,34 +122,38 @@ const Contact = () => {
     <div>
       <Card>
         <H1> // Let's Connect</H1>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <Input
-            placeholder="YOUR NAME *"
-            value={name}
-            onChange={(e) => handleChange(e, setName)}
-          />
-          <Input
-            placeholder="YOUR EMAIL *"
-            value={email}
-            onChange={(e) => handleChange(e, setEmail)}
-          />
-          <Select
-            value={interest}
-            onChange={(e) => handleChange(e, setInterest)}
-          >
-            <Option value=""> WHAT ARE YOU LOOKING FOR? </Option>
-            <Option value="contact">Contact</Option>
-            <Option value="recruit">Recruit</Option>
-          </Select>
-          <Input
-            value={message}
-            placeholder="WRITE A MESSAGE..."
-            onChange={(e) => handleChange(e, setMessage)}
-          />
-          <Divider secondary />
-          <Button type="submit"> SEND MESSAGE</Button>
-          <Divider secondary />
-        </form>
+        {!isSubmitted ? (
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <Input
+              placeholder="YOUR NAME *"
+              value={name}
+              onChange={(e) => handleChange(e, setName)}
+            />
+            <Input
+              placeholder="YOUR EMAIL *"
+              value={email}
+              onChange={(e) => handleChange(e, setEmail)}
+            />
+            <Select
+              value={interest}
+              onChange={(e) => handleChange(e, setInterest)}
+            >
+              <Option value=""> WHAT ARE YOU LOOKING FOR? </Option>
+              <Option value="contact">Contact</Option>
+              <Option value="recruit">Recruit</Option>
+            </Select>
+            <Input
+              value={message}
+              placeholder="WRITE A MESSAGE..."
+              onChange={(e) => handleChange(e, setMessage)}
+            />
+            <Divider secondary />
+            <Button type="submit"> SEND MESSAGE</Button>
+            <Divider secondary />
+          </form>
+        ) : (
+          <H2>Form Submtted Successfully</H2>
+        )}
         <H3>Dayne Guy</H3>
         <Email href="mailto:dayneguy@gmail.com">dayneguy@gmail.com</Email>
         <PhoneNumber>727-554-4474</PhoneNumber>
