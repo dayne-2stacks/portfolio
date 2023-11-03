@@ -92,7 +92,7 @@ const Contact = () => {
     // Send the form data to your server or make an API call to handle the submission
     try {
       const response = await fetch(
-        "https://portfolio-functions-dayne.azurewebsites.net/api/postContact?code=BPUTfCjnMQAHDATUR3rjtnRL-HwmqMBxqFsCqbDmm2FnAzFugTeoKw==",
+        "https://portfolio-function.azurewebsites.net/api/postContact?code=Z15TzFCmWqmPZxV_6emdcJ_TCovRIJ4aS55svAMJeYUDAzFugjrJ_g==",
         {
           method: "POST",
           headers: {
