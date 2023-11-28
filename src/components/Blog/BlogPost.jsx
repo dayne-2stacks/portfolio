@@ -45,7 +45,7 @@ const BlogPost = () => {
       .then((response) => response.json())
       .then((data) => {
         setPost(data); // Assuming the Azure Function returns a single post object
-        console.log(data.fields.body)
+        console.log(data.fields.richText)
       })
       .catch((error) => console.error('Error fetching post:', error));
   }, [slug]);
