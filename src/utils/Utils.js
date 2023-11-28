@@ -1,5 +1,5 @@
 import React from "react";
 
-export const handleChange = (e, func) => {
+export const handleChange = (func) => (e) => {
   func(e.target.value);
 };

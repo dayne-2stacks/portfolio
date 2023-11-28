@@ -1,75 +1,12 @@
 import React, { useState } from "react";
 import { H1, H2, H3 } from "../Base/Headings";
-import styled from "styled-components";
 import Card from "../Card/Card";
 import { Divider } from "../Base/Divider";
 import { handleChange } from "../../utils/Utils";
 import { S2 } from "../Base/Subheadings";
-import { Container } from "../Base/Container";
-import {
-  IoLogoFacebook,
-  IoLogoGithub,
-  IoLogoInstagram,
-  IoLogoLinkedin,
-} from "react-icons/io5";
 import SocialMenu from "./SocialMenu";
 import { Button } from "../Base/Button";
-
-const Input = styled.input`
-  height: 48px;
-  width: 100%;
-  padding: 0px 8px;
-  border: 0;
-  box-sizing: border-box;
-  border-radius: 24px;
-  background-color: #353535;
-  color: #c1c1c1;
-  font-size: 18px;
-  font-family: "Source Sans Pro";
-  font-weight: 300;
-  line-height: 20px;
-  outline: none;
-  margin: 10px 0;
-`;
-
-const Select = styled.select`
-  height: 48px;
-  width: 100%;
-  padding: 0px 8px;
-  border: 0;
-  box-sizing: border-box;
-  border-radius: 24px;
-  background-color: #353535;
-  outline: none;
-  margin: 10px 0;
-  color: #c1c1c1;
-  font-size: 18px;
-  font-family: "Source Sans Pro";
-  font-weight: 300;
-  line-height: 20px;
-`;
-const Option = styled.option`
-  color: #c1c1c1;
-  font-size: 18px;
-  font-family: "Source Sans Pro";
-  font-weight: 300;
-  line-height: 20px;
-`;
-
-const PhoneNumber = styled.p`
-  font-size: 16px;
-  font-family: "Source Sans Pro";
-  font-weight: 500;
-  line-height: 28px;
-  margin: 0px;
-`;
-const Email = styled.a`
-  font-size: 16px;
-  font-family: "Source Sans Pro";
-  font-weight: 500;
-  line-height: 28px;
-  margin: 0px;
-`;
+import { Input, Select, Option, Email, PhoneNumber } from "./styled";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -92,7 +29,7 @@ const Contact = () => {
     // Send the form data to your server or make an API call to handle the submission
     try {
       const response = await fetch(
-        "https://portfolio-function.azurewebsites.net/api/postContact?code=Z15TzFCmWqmPZxV_6emdcJ_TCovRIJ4aS55svAMJeYUDAzFugjrJ_g==",
+        "https://portfolio-functions-dayne.azurewebsites.net/api/postContact?",
         {
           method: "POST",
           headers: {
@@ -118,6 +55,11 @@ const Contact = () => {
       console.error("Error while submitting the form:", error);
     }
   };
+
+  const handleNameChange = handleChange(setName);
+  const handleEmailChange = handleChange(setEmail);
+  const handleMessageChange = handleChange(setMessage);
+  const handleInterestChange = handleChange(setInterest);
   return (
     <div>
       <Card>
@@ -127,16 +69,16 @@ const Contact = () => {
             <Input
               placeholder="YOUR NAME *"
               value={name}
-              onChange={(e) => handleChange(e, setName)}
+              onChange={(e) => handleNameChange(e)}
             />
             <Input
               placeholder="YOUR EMAIL *"
               value={email}
-              onChange={(e) => handleChange(e, setEmail)}
+              onChange={(e) => handleEmailChange(e)}
             />
             <Select
               value={interest}
-              onChange={(e) => handleChange(e, setInterest)}
+              onChange={(e) => handleInterestChange(e)}
             >
               <Option value=""> WHAT ARE YOU LOOKING FOR? </Option>
               <Option value="contact">Contact</Option>
@@ -145,7 +87,7 @@ const Contact = () => {
             <Input
               value={message}
               placeholder="WRITE A MESSAGE..."
-              onChange={(e) => handleChange(e, setMessage)}
+              onChange={(e) => handleMessageChange(e)}
             />
             <Divider secondary />
             <Button type="submit"> SEND MESSAGE</Button>
