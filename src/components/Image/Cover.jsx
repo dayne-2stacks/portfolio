@@ -26,11 +26,13 @@ const Avatar = styled.img`
     -50%,
     -50%
   ); /* Center the avatar exactly in the middle */
-  border-radius: 1000px;
-  height: 25%;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  border-radius: 100%;
+  height: 175px;
+  border: 5px solid black;
+  width: 175px;
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
 `;
 
 const Cover = ({ cover, avatar }) => {
