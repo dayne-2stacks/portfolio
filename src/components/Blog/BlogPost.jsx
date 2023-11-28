@@ -68,7 +68,13 @@ const BlogPost = () => {
       </PostMetadata>
       <PostBody>
         
-        {documentToReactComponents(post.fields.richText) || body}
+        {documentToReactComponents(post.fields.richText, {
+  renderNode: {
+    'embedded-asset-block': (node) => {
+      const imageUrl = `https:${node.data.target.fields.file.url}`;
+      return `<img src="${imageUrl}" alt="${node.data.target.fields.title}" />`;
+    },
+  }}) || body}
       </PostBody>
       {/* <PostTags>
         {tags.map(tag => (
