@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import { IoMenuSharp } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 const Icon = styled(IoMenuSharp)`
   font-size: 24px;
@@ -27,7 +28,9 @@ const NavBar = () => {
   return (
     <div>
       <Navigation>
-        <Header>Dayne Guy</Header>
+        <Header href="/">Dayne Guy</Header>
+        <Link to="/blog"> Blog</Link>
+
         <Icon />
       </Navigation>
     </div>

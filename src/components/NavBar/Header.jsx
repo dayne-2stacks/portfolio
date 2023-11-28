@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 const HeaderStyle = styled.div`
   font-size: 18px;
@@ -8,8 +9,12 @@ const HeaderStyle = styled.div`
   line-height: 20px;
 `;
 
-const Header = ({ children }) => {
-  return <HeaderStyle>{children} </HeaderStyle>;
+const Header = ({ children, href }) => {
+  return <HeaderStyle>
+    <Link to={href}>
+    {children} 
+    </Link>
+    </HeaderStyle>;
 };
 
 export default Header;
