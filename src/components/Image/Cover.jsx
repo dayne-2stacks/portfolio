@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import pro_pic from "../../pro_pic.jpg"
 
 const ImageWrapper = styled.div`
   width: 100%;
@@ -46,7 +47,7 @@ const Cover = ({ cover, avatar }) => {
   return (
     <ImageWrapper>
       <Image src={imageSrc} alt="Random Image" />
-      <Avatar src={imageSrc} alt="profile" />
+      <Avatar src={pro_pic} alt="profile" />
     </ImageWrapper>
   );
 };
