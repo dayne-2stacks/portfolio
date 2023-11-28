@@ -4,7 +4,7 @@ import styled from "styled-components";
 const ImageWrapper = styled.div`
   width: 100%;
   max-height: 35vh; /* Use vh (viewport height) units */
-  padding-top: 70px;
+  // padding-top: 70px;
   overflow: hidden;
 `;
 

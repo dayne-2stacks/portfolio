@@ -17,11 +17,19 @@ const FlexContainer = styled.div`
 //   margin: 10px 0; /* Add margin for spacing between items */
 // `;
 
+const PaddingTop = styled.div `
+  padding-top: 70px;
+
+`
+
 const Layout = ({ children }) => {
   return (
     <FlexContainer>
       <NavBar />
+      <PaddingTop>
+
       {children}
+      </PaddingTop>
     </FlexContainer>
   );
 };

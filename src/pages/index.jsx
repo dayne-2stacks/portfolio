@@ -11,6 +11,7 @@ import Expertise from "../components/Expertise/index";
 import Contact from "../components/Contact/Contact";
 import Projects from "../components/Projects/Projects";
 import { Container } from "../components/Base/Container";
+import BlogList from "../components/Blog/BlogList";
 // import CircularCarousel from "../components/Projects/CircularCarousel";
 
 export const IndexPage = () => {
