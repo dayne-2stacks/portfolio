@@ -29,22 +29,22 @@ const SocialMenu = () => {
       <p>Connect with me on social media.</p>
       <MenuContainer>
         <MenuItem>
-          <MenuLink href="">
+          <MenuLink href="https://www.linkedin.com/in/dayne-guy/">
             <IoLogoLinkedin />
           </MenuLink>
         </MenuItem>
         <MenuItem>
-          <MenuLink href="">
+          <MenuLink href="https://www.instagram.com/dayngerous_guy/?next=%2F">
             <IoLogoInstagram />
           </MenuLink>
         </MenuItem>
         <MenuItem>
-          <MenuLink href="">
+          <MenuLink href="https://www.facebook.com/dayne.guy.58/">
             <IoLogoFacebook />
           </MenuLink>
         </MenuItem>
         <MenuItem>
-          <MenuLink href="">
+          <MenuLink href="https://github.com/dayne-2stacks">
             <IoLogoGithub />
           </MenuLink>
         </MenuItem>
