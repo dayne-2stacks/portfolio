@@ -15,9 +15,12 @@ const Contact = () => {
   const [message, setMessage] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const MAX_RETRY_COUNT = 3; // Define the maximum number of retry attempts
+  const RETRY_DELAY_MS = 1000; // Define the delay (in milliseconds) between retry attempts
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     // Create an object with the form data
     const formData = {
       name,
@@ -25,36 +28,53 @@ const Contact = () => {
       interest,
       message,
     };
-
-    // Send the form data to your server or make an API call to handle the submission
-    try {
-      const response = await fetch(
-        "https://portfolio-functions-dayne.azurewebsites.net/api/postContact?",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+  
+    let retryCount = 0;
+    let isSubmissionSuccessful = false;
+  
+    while (!isSubmissionSuccessful && retryCount < MAX_RETRY_COUNT) {
+      try {
+        const response = await fetch(
+          "https://portfolio-functions-dayne.azurewebsites.net/api/postContact?",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
+        );
+  
+        if (response.ok) {
+          // Handle a successful submission (e.g., show a success message)
+          console.log("Form submitted successfully!");
+          setName("");
+          setEmail("");
+          setInterest("");
+          setMessage("");
+          setIsSubmitted(true);
+          isSubmissionSuccessful = true;
+        } else {
+          // Handle submission errors (e.g., show an error message)
+          console.error("Form submission failed.");
         }
-      );
-
-      if (response.ok) {
-        // Handle a successful submission (e.g., show a success message)
-        console.log("Form submitted successfully!");
-        setName("");
-        setEmail("");
-        setInterest("");
-        setMessage("");
-        setIsSubmitted(true);
-      } else {
-        // Handle submission errors (e.g., show an error message)
-        console.error("Form submission failed.");
+      } catch (error) {
+        console.error("Error while submitting the form:", error);
       }
-    } catch (error) {
-      console.error("Error while submitting the form:", error);
+  
+      if (!isSubmissionSuccessful && retryCount < MAX_RETRY_COUNT - 1) {
+        // If the submission failed and there are more retry attempts allowed, wait before retrying
+        await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
+        retryCount++;
+      }
+    }
+  
+    if (!isSubmissionSuccessful) {
+      // Handle the case where all retry attempts failed (e.g., display a final error message)
+      console.error("Form submission failed after multiple retries.");
     }
   };
+  
 
   const handleNameChange = handleChange(setName);
   const handleEmailChange = handleChange(setEmail);
