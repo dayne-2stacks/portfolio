@@ -40,24 +40,38 @@ const BlogPost = () => {
   const [post, setPost] = useState(null);
   const { slug } = useParams();
 
+  
   useEffect(() => {
     fetch(`https://portfolio-functions-dayne.azurewebsites.net/api/getEntryBySlug?code=UMaUdi42KkiIerZ6ZM-qDyXxKr5B0Og2rX360-HYo6NAAzFucjwquA==&slug=${slug}`)
-      .then((response) => response.json())
-      .then((data) => {
+    .then((response) => response.json())
+    .then((data) => {
         setPost(data); // Assuming the Azure Function returns a single post object
         console.log(data.fields.richText)
       })
       .catch((error) => console.error('Error fetching post:', error));
-  }, [slug]);
-  
-  
-  if (!post) {
-    return <div>Loading...</div>;
-  }
-
-  const { title, heroImage, author, publishDate, body, tags } = post.fields;
-
-
+    }, [slug]);
+    
+    
+    if (!post) {
+      return <div>Loading...</div>;
+    }
+    
+    const { title, heroImage, author, publishDate, body, tags } = post.fields;
+    
+    const options = {
+      renderNode: {
+        'embedded-asset-block': (node) => {
+          return (
+            <img 
+              src={`https:${node.data.target.fields.file.url}`} 
+              alt={node.data.target.fields.title}
+              style={{ width: '100%', height: 'auto' }}
+            />
+          );
+        },
+      },
+    };
+    
   return (
     <PostContainer>
       <PostTitle>{title}</PostTitle>
@@ -68,13 +82,7 @@ const BlogPost = () => {
       </PostMetadata>
       <PostBody>
         
-        {documentToReactComponents(post.fields.richText, {
-  renderNode: {
-    'embedded-asset-block': (node) => {
-      const imageUrl = `https:${node.data.target.fields.file.url}`;
-      return `<img src="${imageUrl}" alt="${node.data.target.fields.title}" />`;
-    },
-  }}) || body}
+        {documentToReactComponents(post.fields.richText, options) || body}
       </PostBody>
       {/* <PostTags>
         {tags.map(tag => (
