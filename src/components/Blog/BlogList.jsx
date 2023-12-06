@@ -3,6 +3,8 @@ import { Link as RouterLink } from "react-router-dom";
 import { Container } from "../Base/Container";
 import styled from "styled-components";
 import digitalIdentity from "../../Digital-Identity.png";
+import SocialMenu from "../Contact/SocialMenu";
+import Card from "../Card/Card";
 
 const BlogListLayout = styled.div`
   display: flex;
@@ -103,6 +105,7 @@ const BlogList = () => {
 
       <Container>
         <h1> // Understanding my Digital Identity</h1>
+        <p></p>
 
         {posts.map((post) => (
           <BlogListLayout>
@@ -123,6 +126,10 @@ const BlogList = () => {
             </BlogItem>
           </BlogListLayout>
         ))}
+        <Card>
+
+        <SocialMenu />
+        </Card>
       </Container>
     </>
   );

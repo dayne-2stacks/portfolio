@@ -6,7 +6,7 @@ import { handleChange } from "../../utils/Utils";
 import { S2 } from "../Base/Subheadings";
 import SocialMenu from "./SocialMenu";
 import { Button } from "../Base/Button";
-import { Input, Select, Option, Email, PhoneNumber } from "./styled";
+import { Input, Select, Option} from "./styled";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -116,9 +116,7 @@ const Contact = () => {
         ) : (
           <H2>Form Submtted Successfully</H2>
         )}
-        <H3>Dayne Guy</H3>
-        <Email href="mailto:dayneguy@gmail.com">dayneguy@gmail.com</Email>
-        <PhoneNumber>727-554-4474</PhoneNumber>
+        
 
         <div>
           <SocialMenu />

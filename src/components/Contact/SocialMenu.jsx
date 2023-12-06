@@ -6,6 +6,9 @@ import {
   IoLogoFacebook,
   IoLogoGithub,
 } from "react-icons/io";
+import { H3 } from "../Base/Headings";
+import { Email, PhoneNumber } from "./styled";
+
 
 const MenuContainer = styled.ul`
   list-style: none;
@@ -26,6 +29,9 @@ const MenuLink = styled.a`
 const SocialMenu = () => {
   return (
     <>
+    <H3>Dayne Guy</H3>
+        <Email href="mailto:dayneguy@gmail.com">dayneguy@gmail.com</Email>
+        <PhoneNumber>727-554-4474</PhoneNumber>
       <p>Connect with me on social media.</p>
       <MenuContainer>
         <MenuItem>
