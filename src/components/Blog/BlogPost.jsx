@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import styled from 'styled-components';
 
@@ -82,13 +82,14 @@ const BlogPost = () => {
       </PostMetadata>
       <PostBody>
         
-        {documentToReactComponents(post.fields.richText, options) || body}
+        {documentToReactComponents(post.fields.richText, options) || body || post.fields.richText}
       </PostBody>
-      {/* <PostTags>
+      <PostTags>
         {tags.map(tag => (
-          <span key={tag.sys.id}>{tag.fields.name}</span>
+          <span style={{"padding": "20px 20px 20px 0"}} key={tag}>{tag}</span>
         ))}
-      </PostTags> */}
+      </PostTags>
+      <Link to="/blog"> Read More Blogs</Link>
     </PostContainer>
   );
 };
