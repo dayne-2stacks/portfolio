@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Container } from "../Base/Container";
 import styled from "styled-components";
@@ -96,6 +96,28 @@ const BlogList = () => {
       })
       .catch((error) => console.error("Error fetching posts:", error));
   }, []);
+  
+  const renderedPosts = useMemo(() => {
+    return posts.map((post) => (
+      <BlogListLayout key={post.sys.id}>
+        <div key={post.fields.heroImage.sys.id}>
+          <Hero src={post.fields.heroImage.fields.file.url}></Hero>
+        </div>
+
+        <BlogItem>
+          <Link to={`/blog/post/${post.fields.slug}`}>
+            <h2>{post.fields.title}</h2>
+            <p>{post.fields.description}</p>
+            <BadgeContainer>
+              {post.fields.tags.map((tag) => (
+                <Badge key={tag}>{tag}</Badge> // Added a key here for individual tags
+              ))}
+            </BadgeContainer>
+          </Link>
+        </BlogItem>
+      </BlogListLayout>
+    ));
+  }, [posts]);
 
   return (
     <>
@@ -104,31 +126,13 @@ const BlogList = () => {
       </ImageWrapper>
 
       <Container>
-        <h1> // Understanding my Digital Identity</h1>
+        <h1>Understanding my Digital Identity</h1>
         <p></p>
 
-        {posts.map((post) => (
-          <BlogListLayout>
-            <div key={post.fields.heroImage.sys.id}>
-              <Hero src={post.fields.heroImage.fields.file.url}></Hero>
-            </div>
-
-            <BlogItem key={post.sys.id}>
-              <Link to={`/blog/post/${post.fields.slug}`}>
-                <h2>{post.fields.title}</h2>
-                <p>{post.fields.description}</p>
-              <BadgeContainer>
-                {post.fields.tags.map((tag) => (
-                  <Badge>{tag}</Badge>
-                  ))}
-              </BadgeContainer>
-                  </Link>
-            </BlogItem>
-          </BlogListLayout>
-        ))}
+        {renderedPosts}
+        
         <Card>
-
-        <SocialMenu />
+          <SocialMenu />
         </Card>
       </Container>
     </>
