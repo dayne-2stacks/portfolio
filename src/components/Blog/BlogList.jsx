@@ -5,8 +5,10 @@ import styled from "styled-components";
 import digitalIdentity from "../../Digital-Identity.png";
 import SocialMenu from "../Contact/SocialMenu";
 import Card from "../Card/Card";
+import { useLazyLoad } from "../../utils/Utils";
+import { useTrail, animated,config } from "@react-spring/web";
 
-const BlogListLayout = styled.div`
+const BlogListLayout = styled(animated.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +30,7 @@ padding: 25px 0;
 }
 `
 
-const BlogItem = styled.div`
+const BlogItem = styled(animated.div)`
   max-width: 100vw;
 padding: 20px 0;
 
@@ -96,47 +98,61 @@ const BlogList = () => {
       })
       .catch((error) => console.error("Error fetching posts:", error));
   }, []);
-  
-  const renderedPosts = useMemo(() => {
-    return posts.map((post) => (
-      <BlogListLayout key={post.sys.id}>
-        <div key={post.fields.heroImage.sys.id}>
-          <Hero src={post.fields.heroImage.fields.file.url}></Hero>
-        </div>
+// Using `useTrail` for staggered animations
+const trail = useTrail(posts.length, {
+  from: { opacity: 0, transform: 'translate3d(0,-40px,0)' },
+  to: { opacity: 1, transform: 'translate3d(0,0px,0)' },
+  config: { duration:750,mass: 5, tension: 2000, friction: 200 }
+});
 
-        <BlogItem>
-          <Link to={`/blog/post/${post.fields.slug}`}>
-            <h2>{post.fields.title}</h2>
-            <p>{post.fields.description}</p>
-            <BadgeContainer>
-              {post.fields.tags.map((tag) => (
-                <Badge key={tag}>{tag}</Badge> // Added a key here for individual tags
-              ))}
-            </BadgeContainer>
-          </Link>
-        </BlogItem>
-      </BlogListLayout>
-    ));
-  }, [posts]);
+const renderedPosts = useMemo(() => {
+  return trail.map((style, index) => (
+    <BlogListLayout style={style} key={posts[index].sys.id}>
 
-  return (
-    <>
-      <ImageWrapper>
-        <Image src={digitalIdentity}></Image>
-      </ImageWrapper>
+        <Link to={`/blog/post/${posts[index].fields.slug}`}>
+      <div key={posts[index].fields.heroImage.sys.id}>
+        <LazyLoadedImage src={posts[index].fields.heroImage.fields.file.url} alt={posts[index].fields.title} />
+      </div>
+      </Link>
+    
+      <BlogItem style={style}>
+        <Link to={`/blog/post/${posts[index].fields.slug}`}>
+          <h2>{posts[index].fields.title}</h2>
+          <p>{posts[index].fields.description}</p>
+          <BadgeContainer>
+            {posts[index].fields.tags.map((tag) => (
+              <Badge key={tag}>{tag}</Badge>
+            ))}    
+          </BadgeContainer>
+        </Link>
+      </BlogItem>
+    </BlogListLayout>
+  ));
+}, [posts, trail]);
 
-      <Container>
-        <h1>Understanding my Digital Identity</h1>
-        <p></p>
+return (
+  <>
+    <ImageWrapper>
+      <Image src={digitalIdentity}></Image>
+    </ImageWrapper>
 
-        {renderedPosts}
-        
-        <Card>
-          <SocialMenu />
-        </Card>
-      </Container>
-    </>
-  );
+    <Container>
+      <h1>Understanding my Digital Identity</h1>
+      <p></p>
+
+      {renderedPosts}
+      
+    </Container>
+      
+  </>
+);
 };
 
 export default BlogList;
+
+
+const LazyLoadedImage = ({ src, alt }) => {
+  const loadedSrc = useLazyLoad(src);
+
+  return <Hero src={loadedSrc} alt={alt} data-src={src} />;
+};

@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import NavBar from "../NavBar/NavBar";
+import Card from "../Card/Card";
+import SocialMenu from "../Contact/SocialMenu";
 
 const FlexContainer = styled.div`
   display: flex;
@@ -30,6 +32,9 @@ const Layout = ({ children }) => {
 
       {children}
       </PaddingTop>
+      <Card>
+          <SocialMenu />
+        </Card>
     </FlexContainer>
   );
 };

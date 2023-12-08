@@ -116,11 +116,7 @@ const Contact = () => {
         ) : (
           <H2>Form Submtted Successfully</H2>
         )}
-        
-
-        <div>
-          <SocialMenu />
-        </div>
+      
       </Card>
     </div>
   );
