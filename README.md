@@ -13,7 +13,7 @@ Welcome to my personal portfolio website! This project is built with React and s
 
 ## Demo
 
-You can check out my portfolio website live at [https://ambitious-cliff-0a2d1ad0f.4.azurestaticapps.net](website).
+You can check out my portfolio website live at [website](https://ambitious-cliff-0a2d1ad0f.4.azurestaticapps.net)
 
 ## Features
 
